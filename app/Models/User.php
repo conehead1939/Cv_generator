@@ -6,6 +6,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\CV;
 
 class User extends Authenticatable
 {
@@ -22,7 +24,15 @@ class User extends Authenticatable
         'email',
         'password',
     ];
-
+    /**
+     * Get all of the comments for the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function comments(): HasMany
+    {
+        return $this->hasMany(CV::class);
+    }
     /**
      * The attributes that should be hidden for serialization.
      *
