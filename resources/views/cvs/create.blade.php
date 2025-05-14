@@ -4,11 +4,13 @@
 <div class="container">
     <h1 class="mb-4">Create New CV</h1>
 
-    <div class="card mb-4">
-        <div class="card-header">CV Details</div>
-        <div class="card-body">
-            <form method="POST" action="{{ route('cvs.store') }}">
-                @csrf
+    <form method="POST" action="{{ route('cvs.store') }}">
+        @csrf
+
+        {{-- CV Details --}}
+        <div class="card mb-4">
+            <div class="card-header">CV Details</div>
+            <div class="card-body">
                 <div class="mb-3">
                     <label class="form-label">Title</label>
                     <input type="text" name="title" class="form-control" required>
@@ -17,138 +19,117 @@
                     <label class="form-label">Summary</label>
                     <textarea name="summary" class="form-control"></textarea>
                 </div>
-                <button type="submit" class="btn btn-success">Create CV</button>
-            </form>
+            </div>
         </div>
-    </div>
 
-    <h2 class="mb-3">Add Sections to Your CV</h2>
-
-    {{-- Experience --}}
-    <div class="card mb-4">
-        <div class="card-header">Add Experience</div>
-        <div class="card-body">
-            <form method="POST" action="{{ route('experiences.store', ['cv' => $cv->id]) }}">
-                @csrf
+        {{-- Experience Section --}}
+        <div class="card mb-4">
+            <div class="card-header">Experience</div>
+            <div class="card-body">
                 <div class="mb-3">
-                    <label class="form-label">Company</label>
-                    <input type="text" name="company" class="form-control" required>
+                    <label>Company</label>
+                    <input type="text" name="experiences[0][company]" class="form-control">
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">Position</label>
-                    <input type="text" name="position" class="form-control" required>
+                    <label>Position</label>
+                    <input type="text" name="experiences[0][position]" class="form-control">
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">Start Date</label>
-                    <input type="date" name="start_date" class="form-control" required>
+                    <label>Start Date</label>
+                    <input type="date" name="experiences[0][start_date]" class="form-control">
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">End Date</label>
-                    <input type="date" name="end_date" class="form-control">
+                    <label>End Date</label>
+                    <input type="date" name="experiences[0][end_date]" class="form-control">
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">Description</label>
-                    <textarea name="description" class="form-control"></textarea>
+                    <label>Description</label>
+                    <textarea name="experiences[0][description]" class="form-control"></textarea>
                 </div>
-                <button type="submit" class="btn btn-secondary">Add Experience</button>
-            </form>
+            </div>
         </div>
-    </div>
 
-    {{-- Education --}}
-    <div class="card mb-4">
-        <div class="card-header">Add Education</div>
-        <div class="card-body">
-            <form method="POST" action="{{ route('education.store', ['cv' => $cv->id]) }}">
-                @csrf
+        {{-- Education Section --}}
+        <div class="card mb-4">
+            <div class="card-header">Education</div>
+            <div class="card-body">
                 <div class="mb-3">
-                    <label class="form-label">School Name</label>
-                    <input type="text" name="school" class="form-control" required>
+                    <label>School</label>
+                    <input type="text" name="educations[0][school]" class="form-control">
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">Degree</label>
-                    <input type="text" name="degree" class="form-control" required>
+                    <label>Degree</label>
+                    <input type="text" name="educations[0][degree]" class="form-control">
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">Start Date</label>
-                    <input type="date" name="start_date" class="form-control" required>
+                    <label>Start Date</label>
+                    <input type="date" name="educations[0][start_date]" class="form-control">
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">End Date</label>
-                    <input type="date" name="end_date" class="form-control">
+                    <label>End Date</label>
+                    <input type="date" name="educations[0][end_date]" class="form-control">
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">Description</label>
-                    <textarea name="description" class="form-control"></textarea>
+                    <label>Description</label>
+                    <textarea name="educations[0][description]" class="form-control"></textarea>
                 </div>
-                <button type="submit" class="btn btn-secondary">Add Education</button>
-            </form>
+            </div>
         </div>
-    </div>
 
-    {{-- Skill --}}
-    <div class="card mb-4">
-        <div class="card-header">Add Skill</div>
-        <div class="card-body">
-            <form method="POST" action="{{ route('skills.store', ['cv' => $cv->id]) }}">
-                @csrf
+        {{-- Skills --}}
+        <div class="card mb-4">
+            <div class="card-header">Skills</div>
+            <div class="card-body">
                 <div class="mb-3">
-                    <label class="form-label">Skill</label>
-                    <input type="text" name="name" class="form-control" required>
+                    <label>Skill</label>
+                    <input type="text" name="skills[0][name]" class="form-control">
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">Proficiency Level</label>
-                    <input type="text" name="level" class="form-control" required>
+                    <label>Proficiency Level</label>
+                    <input type="text" name="skills[0][level]" class="form-control">
                 </div>
-                <button type="submit" class="btn btn-secondary">Add Skill</button>
-            </form>
+            </div>
         </div>
-    </div>
 
-    {{-- Language --}}
-    <div class="card mb-4">
-        <div class="card-header">Add Language</div>
-        <div class="card-body">
-            <form method="POST" action="{{ route('languages.store',['cv' => $cv->id]) }}">
-                @csrf
+        {{-- Languages --}}
+        <div class="card mb-4">
+            <div class="card-header">Languages</div>
+            <div class="card-body">
                 <div class="mb-3">
-                    <label class="form-label">Language</label>
-                    <input type="text" name="language" class="form-control" required>
+                    <label>Language</label>
+                    <input type="text" name="languages[0][language]" class="form-control">
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">Proficiency Level</label>
-                    <input type="text" name="level" class="form-control" required>
+                    <label>Proficiency Level</label>
+                    <input type="text" name="languages[0][level]" class="form-control">
                 </div>
-                <button type="submit" class="btn btn-secondary">Add Language</button>
-            </form>
+            </div>
         </div>
-    </div>
 
-    {{-- Certification --}}
-    <div class="card mb-4">
-        <div class="card-header">Add Certification</div>
-        <div class="card-body">
-            <form method="POST" action="{{ route('certifications.store',['cv' => $cv->id]) }}">
-                @csrf
+        {{-- Certifications --}}
+        <div class="card mb-4">
+            <div class="card-header">Certifications</div>
+            <div class="card-body">
                 <div class="mb-3">
-                    <label class="form-label">Certification Name</label>
-                    <input type="text" name="name" class="form-control" required>
+                    <label>Certification Name</label>
+                    <input type="text" name="certifications[0][name]" class="form-control">
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">Issuing Organization</label>
-                    <input type="text" name="organization" class="form-control" required>
+                    <label>Organization</label>
+                    <input type="text" name="certifications[0][organization]" class="form-control">
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">Issue Date</label>
-                    <input type="date" name="issue_date" class="form-control" required>
+                    <label>Issue Date</label>
+                    <input type="date" name="certifications[0][issue_date]" class="form-control">
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">Expiration Date</label>
-                    <input type="date" name="expiration_date" class="form-control">
+                    <label>Expiration Date</label>
+                    <input type="date" name="certifications[0][expiration_date]" class="form-control">
                 </div>
-                <button type="submit" class="btn btn-secondary">Add Certification</button>
-            </form>
+            </div>
         </div>
-    </div>
+
+        <button type="submit" class="btn btn-primary">Save Full CV</button>
+    </form>
 </div>
 @endsection

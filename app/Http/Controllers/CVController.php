@@ -11,7 +11,7 @@ class CVController extends Controller
 {
     public function index()
     {
-        $cvs = CV::where('id',Auth::user()->id)->get();
+        $cvs = CV::where('user_id',Auth::user()->id)->get();
         return view('cvs.index', compact('cvs'));
     }
 
@@ -23,16 +23,62 @@ class CVController extends Controller
     }
 
     public function store(Request $request)
-    {
-        $data = $request->validate([
-            'title' => 'required|string|max:255',
-            'summary' => 'nullable|string',
-        ]);
+{
+    $data = $request->validate([
+        'title' => 'required|string|max:255',
+        'summary' => 'nullable|string',
 
-        $data['user_id'] = Auth::id();
-        CV::create($data);
-        return redirect()->route('cvs.index')->with('success', 'CV created.');
+        // Experiences
+        'experiences.*.company' => 'nullable|string',
+        'experiences.*.position' => 'nullable|string',
+        'experiences.*.start_date' => 'nullable|date',
+        'experiences.*.end_date' => 'nullable|date|after_or_equal:experiences.*.start_date',
+        'experiences.*.description' => 'nullable|string',
+
+        // Educations
+        'educations.*.school' => 'nullable|string',
+        'educations.*.degree' => 'nullable|string',
+        'educations.*.start_date' => 'nullable|date',
+        'educations.*.end_date' => 'nullable|date|after_or_equal:educations.*.start_date',
+        'educations.*.description' => 'nullable|string',
+
+        // Skills
+        'skills.*.name' => 'nullable|string',
+        'skills.*.level' => 'nullable|string',
+
+        // Languages
+        'languages.*.language' => 'nullable|string',
+        'languages.*.level' => 'nullable|string',
+
+        // Certifications
+        'certifications.*.name' => 'nullable|string',
+        'certifications.*.organization' => 'nullable|string',
+        'certifications.*.issue_date' => 'nullable|date',
+        'certifications.*.expiration_date' => 'nullable|date|after_or_equal:certifications.*.issue_date',
+    ]);
+
+    // Create the CV
+    $cv = CV::create([
+        'user_id' => Auth::id(),
+        'title' => $data['title'],
+        'summary' => $data['summary'] ?? null,
+    ]);
+
+    // Store all sections dynamically if data exists
+    $sections = ['experiences', 'educations', 'skills', 'languages', 'certifications'];
+
+    foreach ($sections as $section) {
+        if (!empty($data[$section])) {
+            foreach ($data[$section] as $item) {
+                if (array_filter($item)) { // Skip completely empty rows
+                    $cv->{$section}()->create($item);
+                }
+            }
+        }
     }
+
+    return redirect()->route('cvs.index')->with('success', 'CV and related sections created.');
+}
 
     public function show(CV $cv)
     {
