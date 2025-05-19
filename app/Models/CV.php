@@ -41,4 +41,8 @@ class CV extends Model
     {
         return $this->hasMany(Certification::class, 'cv_id');
     }
+    public function generatedCv()
+    {
+        return $this->hasOne(GeneratedCV::class, 'cv_id');
+    }
 }

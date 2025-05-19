@@ -8,7 +8,7 @@ use App\Http\Controllers\EducationController;
 use App\Http\Controllers\SkillController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\CertificationController;
-
+use App\Http\Controllers\AIController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -34,7 +34,13 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('languages', LanguageController::class)->except(['index', 'show', 'create']);
         Route::resource('certifications', CertificationController::class)->except(['index', 'show', 'create']);
     });
+    Route::get('/cvs/{cv}/generate', [AIController::class, 'generate'])->name('ai.generate');
+    Route::post('/cvs/{cv}/generate/preview', [AIController::class, 'preview'])->name('ai.preview');
+    Route::post('/cvs/{cv}/generate/save', [AIController::class, 'save'])->name('ai.save');
 });
+
+    
+
 
 
 require __DIR__.'/auth.php';

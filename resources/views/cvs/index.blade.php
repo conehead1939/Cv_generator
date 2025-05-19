@@ -17,10 +17,16 @@
                         </div>
                         <div class="card-footer d-flex justify-content-between">
                             <a href="{{ route('cvs.edit', $cv) }}" class="btn btn-outline-secondary btn-sm">Edit</a>
+                            <a href="{{ route('ai.generate', $cv->id) }}" class="btn btn-primary btn-sm">Generate CV</a>
                             <form action="{{ route('cvs.destroy', $cv) }}" method="POST" onsubmit="return confirm('Are you sure?')" class="d-inline">
                                 @csrf @method('DELETE')
                                 <button type="submit" class="btn btn-outline-danger btn-sm">Delete</button>
                             </form>
+                            @if($cv->generatedcv)
+                                <a href="{{ asset($cv->generatedcv->file_path) }}" class="btn btn-success btn-sm" target="_blank">
+                                    View Generated CV
+                                </a>
+                            @endif
                         </div>
                     </div>
                 </div>
