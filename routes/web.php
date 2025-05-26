@@ -11,7 +11,7 @@ use App\Http\Controllers\CertificationController;
 use App\Http\Controllers\AIController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('dashboard');
 });
 
 Route::get('/dashboard', function () {
