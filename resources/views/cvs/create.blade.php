@@ -55,7 +55,7 @@
             <div class="card-body">
                 <div class="mb-3">
                     <label>School</label>
-                    <input type="text" name="educations[0][school]" class="form-control">
+                    <input type="text" name="educations[0][institution]" class="form-control">
                 </div>
                 <div class="mb-3">
                     <label>Degree</label>
@@ -97,11 +97,11 @@
             <div class="card-body">
                 <div class="mb-3">
                     <label>Language</label>
-                    <input type="text" name="languages[0][language]" class="form-control">
+                    <input type="text" name="languages[0][name]" class="form-control">
                 </div>
                 <div class="mb-3">
                     <label>Proficiency Level</label>
-                    <input type="text" name="languages[0][level]" class="form-control">
+                    <input type="text" name="languages[0][proficiency]" class="form-control">
                 </div>
             </div>
         </div>
@@ -112,19 +112,19 @@
             <div class="card-body">
                 <div class="mb-3">
                     <label>Certification Name</label>
-                    <input type="text" name="certifications[0][name]" class="form-control">
+                    <input type="text" name="certifications[0][title]" class="form-control">
                 </div>
                 <div class="mb-3">
                     <label>Organization</label>
-                    <input type="text" name="certifications[0][organization]" class="form-control">
+                    <input type="text" name="certifications[0][issuer]" class="form-control">
                 </div>
                 <div class="mb-3">
                     <label>Issue Date</label>
-                    <input type="date" name="certifications[0][issue_date]" class="form-control">
+                    <input type="date" name="certifications[0][date_obtained]" class="form-control">
                 </div>
                 <div class="mb-3">
-                    <label>Expiration Date</label>
-                    <input type="date" name="certifications[0][expiration_date]" class="form-control">
+                    <label>Description</label>
+                    <textarea name="certifications[0][expiration_date]" class="form-control"></textarea>
                 </div>
             </div>
         </div>

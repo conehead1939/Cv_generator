@@ -201,11 +201,11 @@
                 @method('PUT')
                 <div class="mb-3">
                     <label class="form-label">Language</label>
-                    <input type="text" name="language" value="{{ $language->language }}" class="form-control" required>
+                    <input type="text" name="name" value="{{ $language->name }}" class="form-control" required>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Proficiency Level</label>
-                    <input type="text" name="level" value="{{ $language->level }}" class="form-control" required>
+                    <input type="text" name="proficiency" value="{{ $language->proficiency }}" class="form-control" required>
                 </div>
                 <button type="submit" class="btn btn-primary">Update Language</button>
             </form>
@@ -219,11 +219,11 @@
         @csrf
         <div class="mb-3">
             <label class="form-label">Language</label>
-            <input type="text" name="language" class="form-control" required>
+            <input type="text" name="name" class="form-control" required>
         </div>
         <div class="mb-3">
             <label class="form-label">Proficiency Level</label>
-            <input type="text" name="level" class="form-control" required>
+            <input type="text" name="proficiency" class="form-control" required>
         </div>
         <button type="submit" class="btn btn-success">Add Language</button>
     </form>
@@ -241,19 +241,19 @@
                 @method('PUT')
                 <div class="mb-3">
                     <label class="form-label">Certification Name</label>
-                    <input type="text" name="name" value="{{ $certification->name }}" class="form-control" required>
+                    <input type="text" name="title" value="{{ $certification->title }}" class="form-control" required>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Issuing Organization</label>
-                    <input type="text" name="organization" value="{{ $certification->organization }}" class="form-control" required>
+                    <input type="text" name="issuer" value="{{ $certification->issuer }}" class="form-control" required>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Issue Date</label>
-                    <input type="date" name="issue_date" value="{{ $certification->issue_date }}" class="form-control" required>
+                    <input type="date" name="date_obtained" value="{{ $certification->date_obtained }}" class="form-control" required>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">Expiration Date</label>
-                    <input type="date" name="expiration_date" value="{{ $certification->expiration_date }}" class="form-control">
+                    <label class="form-label">description</label>
+                    <textarea name="description" class="form-control"value="{{ $certification->expiration_date }}" class="form-control"> </textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">Update Certification</button>
             </form>
@@ -267,19 +267,19 @@
         @csrf
         <div class="mb-3">
             <label class="form-label">Certification Name</label>
-            <input type="text" name="name" class="form-control" required>
+            <input type="text" name="title" class="form-control" required>
         </div>
         <div class="mb-3">
             <label class="form-label">Issuing Organization</label>
-            <input type="text" name="organization" class="form-control" required>
+            <input type="text" name="issuer" class="form-control" required>
         </div>
         <div class="mb-3">
             <label class="form-label">Issue Date</label>
-            <input type="date" name="issue_date" class="form-control" required>
+            <input type="date" name="date_obtained" class="form-control" required>
         </div>
         <div class="mb-3">
-            <label class="form-label">Expiration Date</label>
-            <input type="date" name="expiration_date" class="form-control">
+            <label class="form-label">description</label>
+            <textarea name="description" class="form-control"></textarea>
         </div>
         <button type="submit" class="btn btn-success">Add Certification</button>
     </form>

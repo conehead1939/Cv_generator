@@ -10,7 +10,7 @@ class Education extends Model
     protected $table = 'education';
 
     protected $fillable = [
-        'cv_id', 'institution', 'degree', 'field', 'start_date', 'end_date'
+        'cv_id', 'institution', 'degree', 'start_date', 'end_date'
     ];
 
     public function cv()

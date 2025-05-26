@@ -24,6 +24,8 @@ class CVController extends Controller
 
     public function store(Request $request)
 {
+    //dd($request->all());
+
     $data = $request->validate([
         'title' => 'required|string|max:255',
         'summary' => 'nullable|string',
@@ -36,7 +38,7 @@ class CVController extends Controller
         'experiences.*.description' => 'nullable|string',
 
         // Educations
-        'educations.*.school' => 'nullable|string',
+        'educations.*.institution' => 'nullable|string',
         'educations.*.degree' => 'nullable|string',
         'educations.*.start_date' => 'nullable|date',
         'educations.*.end_date' => 'nullable|date|after_or_equal:educations.*.start_date',
@@ -47,8 +49,8 @@ class CVController extends Controller
         'skills.*.level' => 'nullable|string',
 
         // Languages
-        'languages.*.language' => 'nullable|string',
-        'languages.*.level' => 'nullable|string',
+        'languages.*.name' => 'nullable|string',
+        'languages.*.proficiency' => 'nullable|string',
 
         // Certifications
         'certifications.*.name' => 'nullable|string',
