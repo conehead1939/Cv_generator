@@ -11,13 +11,6 @@ use App\Http\Controllers\CertificationController;
 use App\Http\Controllers\AIController;
 
 Route::get('/', function () {
-<<<<<<< HEAD
-=======
-    return view('dashboard');
-});
-
-Route::get('/dashboard', function () {
->>>>>>> de85290f027dd12ce4a9313f67788fe28ea592e0
     return view('dashboard');
 })->middleware(['auth', 'verified']);
 
